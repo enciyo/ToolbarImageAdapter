@@ -7,7 +7,7 @@
 build.gradle(Module)
 ```
 dependidependencies {
-	    implementation 'com.github.enciyo:ToolbarImageAdapter:v0.1'
+	    implementation 'com.github.enciyo:ToolbarImageAdapter:$version'
 
 }
 ```
@@ -29,6 +29,4 @@ toolbarImageAdapter = (CustomView) findViewById(R.id.container);
 toolbarImageAdapter.setAdapter(mArrayList);
 toolbarImageAdapter.setTitle("Title")
 toolbarImageAdapter.setSubTitle("SubTitle")
-toolbarImageAdapter.setImageButtonIcon(mIcon);
-
 ```
