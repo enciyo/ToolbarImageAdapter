@@ -29,5 +29,6 @@ toolbarImageAdapter = (CustomView) findViewById(R.id.container);
 toolbarImageAdapter.setAdapter(mArrayList);
 toolbarImageAdapter.setTitle("Title")
 toolbarImageAdapter.setSubTitle("SubTitle")
+toolbarImageAdapter.setImageButtonIcon(mIcon);
 
 ```
