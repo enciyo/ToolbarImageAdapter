@@ -1,0 +1,91 @@
+package com.enciyo.enciyoappbarlayout;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
+
+import java.util.ArrayList;
+
+public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetChangedListener {
+
+    public CustomView(Context context) {
+        super(context);
+        init();
+    }
+    public CustomView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+
+    private View mView = LayoutInflater.from(getContext()).inflate(R.layout.customview, this, true);
+    private ViewPager mViewPager;
+    private PagerAdapter mPagerAdapter;
+    private LinearLayout mLinearLayout;
+    private IndefinitePagerIndicator mIndicator;
+    private FrameLayout mFrameLayout;
+    private TextView mTitle;
+    private TextView mSubtitle;
+    private android.support.v7.widget.Toolbar mToolbar;
+
+
+    public void init() {
+
+        mViewPager = mView.findViewById(R.id.viewPager);
+        mTitle = mView.findViewById(R.id.title);
+        mSubtitle = mView.findViewById(R.id.title2);
+        mLinearLayout = mView.findViewById(R.id.linear);
+        mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
+        mFrameLayout = mView.findViewById(R.id.frameLayout);
+        mToolbar = mView.findViewById(R.id.myCustomToolbar);
+        //
+        mIndicator.attachToViewPager(mViewPager);
+        this.addOnOffsetChangedListener(this);
+        mViewPager.setPageTransformer(false,new PageSwitchTransformer());
+        this.setBackgroundColor(Color.parseColor("#f4f4f4"));
+    }
+
+
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+        Float progress=  -i / (float) appBarLayout.getTotalScrollRange();
+        mFrameLayout.setAlpha(1-progress);
+        mLinearLayout.setAlpha(progress);
+
+    }
+
+    public void setAdapter(ArrayList<String> arrayList) {
+        mPagerAdapter = new PagerAdapter(arrayList);
+        mViewPager.setAdapter(mPagerAdapter);
+    }
+
+    public void setTitle(String title) {
+        this.mTitle.setText(title);
+    }
+
+    public void setSubTitle(String subTitle){
+        this.mSubtitle.setText(subTitle);
+    }
+
+    public Toolbar getmToolbar() {
+        return mToolbar;
+    }
+
+    @Override
+    public View getRootView() {
+        return (AppBarLayout) mView;
+    }
+
+
+}
