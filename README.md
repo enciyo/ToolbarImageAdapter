@@ -3,7 +3,7 @@
 <img src="https://github.com/enciyo/ToolbarImageAdapter/blob/master/app/src/main/java/art/enciyo.gif?raw=true" width="320" height="560" />
 
 ## Installation
-
+# [![](https://jitpack.io/v/enciyo/ToolbarImageAdapter.svg)](https://jitpack.io/#enciyo/ToolbarImageAdapter)
 build.gradle(Module)
 ```
 dependidependencies {
