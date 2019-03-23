@@ -29,4 +29,28 @@ toolbarImageAdapter = (CustomView) findViewById(R.id.container);
 toolbarImageAdapter.setAdapter(mArrayList);
 toolbarImageAdapter.setTitle("Title")
 toolbarImageAdapter.setSubTitle("SubTitle")
+toolbarImageAdapter.setmImageButton(mImageButton);
+toolbarImageAdapter.setmToolbar(mToolbar);
+toolbarImageAdapter.getmImageButton().setOnClickListener(new View.OnClickListener() {..//do Something}
+
+//You must add this line
+setSupporActionBar(toolbarImageAdapter.getmToolbar());
+```
+Xml
+
+```
+//You must use CoordinatorLayout
+<android.support.design.widget.CoordinatorLayout	
+...>
+ 
+   <com.enciyo.enciyoappbarlayout.CustomView
+       android:layout_width="match_parent"
+       android:id="@+id/toolbarImageAdapter"
+       android:layout_height="300dp">
+   </com.enciyo.enciyoappbarlayout.CustomView>
+   
+   <android.support.v4.widget.NestedScrollView  
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    ...>
+	
 ```
