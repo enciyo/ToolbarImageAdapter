@@ -2,6 +2,7 @@ package com.enciyo.enciyoappbarlayout;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,6 +39,8 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     private TextView mTitle;
     private TextView mSubtitle;
     private android.support.v7.widget.Toolbar mToolbar;
+    private ImageButton mImageButton;
+
 
 
     public void init() {
@@ -48,6 +52,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
         mFrameLayout = mView.findViewById(R.id.frameLayout);
         mToolbar = mView.findViewById(R.id.myCustomToolbar);
+        mImageButton = mView.findViewById(R.id.imageButton);
         //
         mIndicator.attachToViewPager(mViewPager);
         this.addOnOffsetChangedListener(this);
@@ -86,6 +91,14 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     public View getRootView() {
         return (AppBarLayout) mView;
     }
+    public void setImageButtonIcon(Icon icon) {
+        mImageButton.setImageIcon(icon);
+    }
 
-
+    public Toolbar setmToolbar(Toolbar toolbar) {
+        return toolbar;
+    }
+    public ImageButton getmImageButton() {
+        return mImageButton;
+    }
 }
