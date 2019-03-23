@@ -98,7 +98,8 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     public Toolbar setmToolbar(Toolbar toolbar) {
         return toolbar;
     }
-    public ImageButton getmImageButton() {
-        return mImageButton;
+
+    public void setmImageButton(ImageButton mImageButton) {
+        this.mImageButton = mImageButton;
     }
 }
