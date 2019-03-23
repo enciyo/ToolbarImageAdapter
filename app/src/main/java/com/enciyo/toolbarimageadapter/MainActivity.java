@@ -2,6 +2,9 @@ package com.enciyo.toolbarimageadapter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.enciyo.enciyoappbarlayout.CustomView;
 
@@ -11,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     CustomView enciyo;
     ArrayList<String> arrayList;
-
+    ImageButton mImageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
         enciyo.setAdapter(arrayList);
         enciyo.setTitle("Title");
         enciyo.setSubTitle("Subtitle");
-
+        enciyo.setmImageButton(mImageButton);
+        enciyo.getmImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(),"sada",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 

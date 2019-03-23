@@ -43,8 +43,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
 
 
 
-    public void init() {
-
+    private void init() {
         mViewPager = mView.findViewById(R.id.viewPager);
         mTitle = mView.findViewById(R.id.title);
         mSubtitle = mView.findViewById(R.id.title2);
@@ -91,9 +90,6 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     public View getRootView() {
         return (AppBarLayout) mView;
     }
-    public void setImageButtonIcon(Icon icon) {
-        mImageButton.setImageIcon(icon);
-    }
 
     public Toolbar setmToolbar(Toolbar toolbar) {
         return toolbar;
@@ -101,5 +97,9 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
 
     public void setmImageButton(ImageButton mImageButton) {
         this.mImageButton = mImageButton;
+    }
+
+    public ImageButton getmImageButton() {
+        return mImageButton;
     }
 }
