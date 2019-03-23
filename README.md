@@ -4,5 +4,5 @@
 
 <h1>Implemantion</h1>
 <p>
-`implementation 'com.github.enciyo:ToolbarImageAdapter:v0.1 `
+<`implementation 'com.github.enciyo:ToolbarImageAdapter:v0.1 `>
 </p>
