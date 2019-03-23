@@ -25,102 +25,96 @@
           android:layout_height="wrap_content">
 
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
 
 
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
-
-
          <android.support.design.card.MaterialCardView
-             app:cardBackgroundColor="@color/colorAccent"
+             app:cardBackgroundColor="@color/default_dot_color"
              android:layout_width="match_parent"
              android:layout_height="150dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Mustafa"
                 android:layout_height="match_parent" />
          </android.support.design.card.MaterialCardView>
+         <android.support.design.card.MaterialCardView
+             app:cardBackgroundColor="@color/default_dot_color"
+             android:layout_width="match_parent"
+             android:layout_height="150dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+         </android.support.design.card.MaterialCardView>
+
+
+
+
+
+
+
+
+
 
 
       </LinearLayout>
