@@ -2,7 +2,6 @@ package com.enciyo.enciyoappbarlayout;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Icon;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +16,11 @@ import android.widget.TextView;
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetChangedListener {
 
@@ -36,23 +40,37 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     private LinearLayout mLinearLayout;
     private IndefinitePagerIndicator mIndicator;
     private FrameLayout mFrameLayout;
-    private TextView mTitle;
-    private TextView mSubtitle;
-    private android.support.v7.widget.Toolbar mToolbar;
+    private TextView title;
+    private TextView subtitle;
+    private android.support.v7.widget.Toolbar toolbar;
     private ImageButton mImageButton;
+    private TextView imageTitle;
+    private TextView imageSubTitle;
 
 
+    public void setImageTitle(String imageTitle) {
+        this.imageTitle.setText(imageTitle);
+    }
+
+    public void setImageSubTitle(String imageSubTitle) {
+        this.imageSubTitle.setText(imageSubTitle);
+    }
 
     private void init() {
         mViewPager = mView.findViewById(R.id.viewPager);
-        mTitle = mView.findViewById(R.id.title);
-        mSubtitle = mView.findViewById(R.id.title2);
+        title = mView.findViewById(R.id.title);
+        subtitle = mView.findViewById(R.id.title2);
         mLinearLayout = mView.findViewById(R.id.linear);
         mFrameLayout = mView.findViewById(R.id.frameLayout);
-        mToolbar = mView.findViewById(R.id.myCustomToolbar);
+        toolbar = mView.findViewById(R.id.myCustomToolbar);
         mImageButton = mView.findViewById(R.id.imageButton);
-        //
+        imageTitle = mView.findViewById(R.id.imageTitle);
+        imageSubTitle = mView.findViewById(R.id.imageSubtitle);
+
         this.setBackgroundColor(Color.parseColor("#f4f4f4"));
+        this.addOnOffsetChangedListener(this);
+
+
     }
 
 
@@ -67,23 +85,32 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
 
     public void setAdapter(ArrayList<String> arrayList) {
         mPagerAdapter = new PagerAdapter(arrayList);
-        this.addOnOffsetChangedListener(this);
-        mViewPager.setAdapter(mPagerAdapter);
-        mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
-        mIndicator.attachToViewPager(mViewPager);
-        mViewPager.setPageTransformer(false,new PageSwitchTransformer());
+        Observable.fromCallable(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                mViewPager.setAdapter(mPagerAdapter);
+                mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
+                mIndicator.attachToViewPager(mViewPager);
+                mViewPager.setPageTransformer(false,new PageSwitchTransformer());
+                return mViewPager;
+            }
+        })
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe();
+
     }
 
     public void setTitle(String title) {
-        this.mTitle.setText(title);
+        this.title.setText(title);
     }
 
     public void setSubTitle(String subTitle){
-        this.mSubtitle.setText(subTitle);
+        this.subtitle.setText(subTitle);
     }
 
-    public Toolbar getmToolbar() {
-        return mToolbar;
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     @Override
