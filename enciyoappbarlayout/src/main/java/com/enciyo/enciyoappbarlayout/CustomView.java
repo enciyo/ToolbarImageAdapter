@@ -53,9 +53,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         mToolbar = mView.findViewById(R.id.myCustomToolbar);
         mImageButton = mView.findViewById(R.id.imageButton);
         //
-        mIndicator.attachToViewPager(mViewPager);
         this.addOnOffsetChangedListener(this);
-        mViewPager.setPageTransformer(false,new PageSwitchTransformer());
         this.setBackgroundColor(Color.parseColor("#f4f4f4"));
     }
 
@@ -72,6 +70,8 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     public void setAdapter(ArrayList<String> arrayList) {
         mPagerAdapter = new PagerAdapter(arrayList);
         mViewPager.setAdapter(mPagerAdapter);
+        mIndicator.attachToViewPager(mViewPager);
+        mViewPager.setPageTransformer(false,new PageSwitchTransformer());
     }
 
     public void setTitle(String title) {
