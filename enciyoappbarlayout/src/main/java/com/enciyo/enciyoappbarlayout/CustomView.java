@@ -83,11 +83,11 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
 
     }
 
-    public void setAdapter(ArrayList<String> arrayList) {
-        mPagerAdapter = new PagerAdapter(arrayList);
+    public void setAdapter(final ArrayList<String> arrayList) {
         Observable.fromCallable(new Callable() {
             @Override
             public Object call() throws Exception {
+                mPagerAdapter = new PagerAdapter(arrayList);
                 mViewPager.setAdapter(mPagerAdapter);
                 mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
                 mIndicator.attachToViewPager(mViewPager);
@@ -95,7 +95,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
                 return mViewPager;
             }
         })
-        .subscribeOn(Schedulers.newThread())
+        .subscribeOn(AndroidSchedulers.mainThread())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe();
 
