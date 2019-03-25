@@ -1,7 +1,11 @@
 package com.enciyo.enciyoappbarlayout;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -20,17 +24,17 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetChangedListener {
 
     public CustomView(Context context) {
         super(context);
-        init();
+        init(null);
     }
+
     public CustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
 
@@ -46,8 +50,23 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     private ImageButton mImageButton;
     private TextView imageTitle;
     private TextView imageSubTitle;
-    private ArrayList<String> mArrayList= new ArrayList<>();
+    private ArrayList<String> mArrayList = new ArrayList<>();
     private LinearLayout mImageLinear;
+    private Paint mPaint;
+    private Rect mRect;
+
+    //Attr
+    String mTitle = " ";
+    String mSubTitle = " ";
+    String mImageTitle = " ";
+    String mImageSubtitle = " ";
+    int mToolbarColor = Color.TRANSPARENT;
+    int mAppBarTitleColor = Color.BLACK;
+    int mAppBarSubTitleColor = Color.BLACK;
+    int mImageTitleColor = Color.WHITE;
+    int mImageSubTitleColor = Color.WHITE;
+
+
 
 
     public void setImageTitle(String imageTitle) {
@@ -61,7 +80,11 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         this.imageSubTitle.setText(imageSubTitle);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
+
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mRect = new Rect();
+
         mViewPager = mView.findViewById(R.id.viewPager);
         title = mView.findViewById(R.id.title);
         subtitle = mView.findViewById(R.id.title2);
@@ -73,29 +96,63 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         imageSubTitle = mView.findViewById(R.id.imageSubtitle);
         mImageLinear = mView.findViewById(R.id.imageLinear);
 
-        this.setBackgroundColor(Color.parseColor("#f4f4f4"));
+        this.setBackgroundColor(Color.parseColor("#000000"));
         this.addOnOffsetChangedListener(this);
+
+        if(attrs !=  null) {
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs,R.styleable.CustomView);
+
+
+            if(typedArray.getString(R.styleable.CustomView_appBarTitle)!=null){
+                this.title.setText(typedArray.getString(R.styleable.CustomView_appBarTitle));
+            }
+            if(typedArray.getString(R.styleable.CustomView_appBarSubtitle)!= null ){
+                this.subtitle.setText(typedArray.getString(R.styleable.CustomView_appBarSubtitle));
+            }
+            if (typedArray.getString(R.styleable.CustomView_imageTitle)!=null){
+                this.imageTitle.setText(typedArray.getString(R.styleable.CustomView_imageTitle));
+            }
+            if (typedArray.getString(R.styleable.CustomView_imageSubtitle)!=null){
+                this.imageSubTitle.setText(typedArray.getString(R.styleable.CustomView_imageSubtitle));
+            }
+
+                this.title.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarTitleColor,Color.WHITE));
+                this.toolbar.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_toolbar_color,Color.TRANSPARENT));
+
+            typedArray.recycle();
+
+
+        }
+
+
 
 
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
+        mRect.left = 0;
+        mRect.right = getWidth();
+        mRect.top = 0;
+        mRect.bottom = getHeight();
+
+        canvas.drawRect(mRect, mPaint);
+    }
 
     @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-        Float progress=  -i / (float) appBarLayout.getTotalScrollRange();
-        if (progress>0.7){
-            mFrameLayout.setAlpha(1-(progress*0.1f));
-            mLinearLayout.setAlpha(progress);
-        }
-        else {
-            mLinearLayout.setAlpha(progress);
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        int toltalRange = getTotalScrollRange();
+        if (toltalRange + verticalOffset <= toltalRange / 2) {
+            mFrameLayout.setAlpha(((float) (toltalRange + verticalOffset) / (toltalRange / 2)));
+            mLinearLayout.setAlpha(1 - ((float) (toltalRange + verticalOffset) / (toltalRange / 2)));
+        } else {
+            mFrameLayout.setAlpha(1);
+            mLinearLayout.setAlpha(0);
         }
 
-        if(progress==1.0){
-            mFrameLayout.setAlpha(1-(progress));
-            mLinearLayout.setAlpha(progress);
-        }
+
     }
 
     public void setAdapter(final ArrayList<String> arrayList) {
@@ -106,13 +163,13 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
                 mViewPager.setAdapter(mPagerAdapter);
                 mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
                 mIndicator.attachToViewPager(mViewPager);
-                mViewPager.setPageTransformer(false,new PageSwitchTransformer());
+                mViewPager.setPageTransformer(false, new PageSwitchTransformer());
                 return mViewPager;
             }
         })
-        .subscribeOn(AndroidSchedulers.mainThread())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe();
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
 
     }
 
@@ -121,7 +178,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         mViewPager.setAdapter(new PagerAdapter(mArrayList));
         mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
         mIndicator.attachToViewPager(mViewPager);
-        mViewPager.setPageTransformer(false,new PageSwitchTransformer());
+        mViewPager.setPageTransformer(false, new PageSwitchTransformer());
 
     }
 
@@ -129,7 +186,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         this.title.setText(title);
     }
 
-    public void setSubTitle(String subTitle){
+    public void setSubTitle(String subTitle) {
         this.subtitle.setText(subTitle);
     }
 

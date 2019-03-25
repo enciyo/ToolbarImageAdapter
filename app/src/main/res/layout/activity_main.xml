@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.enciyo.enciyoappbarlayout.CustomView
+        android:layout_width="match_parent"
+        app:title="Mustafa"
+        app:appBarTitle="Mustafa"
+        app:appbarTitleColor="@color/default_dot_color"
+        app:imageSubtitle="SubTitle"
+        app:imageTitle="Title"
+        android:id="@+id/enciyo"
+        android:layout_height="250dp">
+
+    </com.enciyo.enciyoappbarlayout.CustomView>
 </android.support.design.widget.CoordinatorLayout>

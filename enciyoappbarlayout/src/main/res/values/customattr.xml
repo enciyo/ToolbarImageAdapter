@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <declare-styleable name="CustomView">
+         <attr name="appBarTitle" format="string" />
+         <attr name="appBarSubtitle" format="string" />
+         <attr name="imageTitle" format="string" />
+         <attr name="imageSubtitle" format="string" />
+         <attr name="toolbar_color" format="color" />
+         <attr name="appbarTitleColor" format="color" />
+         <attr name="appbarSubTitleColor" format="color" />
+         <attr name="imageTitleColor" format="color" />
+         <attr name="imageSubTitleColor" format="color" />
+
+
+
+     </declare-styleable>
+</resources>

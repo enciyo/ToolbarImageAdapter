@@ -9,6 +9,6 @@ public class PageSwitchTransformer implements ViewPager.PageTransformer {
     @Override
     public void transformPage(@NonNull View view, float v) {
         ImageView image = view.findViewById(R.id.pager_imageView);
-        image.setTranslationX(-v * view.getWidth());
+        image.setTranslationX(-v * view.getWidth()/2);
     }
 }
