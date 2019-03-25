@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.enciyo.enciyoappbarlayout.CustomView
+        android:layout_width="match_parent"
+        android:id="@+id/enciyo"
+        android:layout_height="250dp">
 
-
+    </com.enciyo.enciyoappbarlayout.CustomView>
 </android.support.design.widget.CoordinatorLayout>

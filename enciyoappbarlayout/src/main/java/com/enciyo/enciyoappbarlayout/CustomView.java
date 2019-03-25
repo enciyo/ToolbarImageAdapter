@@ -46,13 +46,18 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     private ImageButton mImageButton;
     private TextView imageTitle;
     private TextView imageSubTitle;
+    private ArrayList<String> mArrayList= new ArrayList<>();
+    private LinearLayout mImageLinear;
 
 
     public void setImageTitle(String imageTitle) {
+        mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
         this.imageTitle.setText(imageTitle);
     }
 
     public void setImageSubTitle(String imageSubTitle) {
+        mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
+
         this.imageSubTitle.setText(imageSubTitle);
     }
 
@@ -66,6 +71,7 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         mImageButton = mView.findViewById(R.id.imageButton);
         imageTitle = mView.findViewById(R.id.imageTitle);
         imageSubTitle = mView.findViewById(R.id.imageSubtitle);
+        mImageLinear = mView.findViewById(R.id.imageLinear);
 
         this.setBackgroundColor(Color.parseColor("#f4f4f4"));
         this.addOnOffsetChangedListener(this);
@@ -78,9 +84,18 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
         Float progress=  -i / (float) appBarLayout.getTotalScrollRange();
-        mFrameLayout.setAlpha(1-progress);
-        mLinearLayout.setAlpha(progress);
+        if (progress>0.7){
+            mFrameLayout.setAlpha(1-(progress*0.1f));
+            mLinearLayout.setAlpha(progress);
+        }
+        else {
+            mLinearLayout.setAlpha(progress);
+        }
 
+        if(progress==1.0){
+            mFrameLayout.setAlpha(1-(progress));
+            mLinearLayout.setAlpha(progress);
+        }
     }
 
     public void setAdapter(final ArrayList<String> arrayList) {
@@ -98,6 +113,15 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         .subscribeOn(AndroidSchedulers.mainThread())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe();
+
+    }
+
+    public void setAdapter(String url) {
+        mArrayList.add(url);
+        mViewPager.setAdapter(new PagerAdapter(mArrayList));
+        mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
+        mIndicator.attachToViewPager(mViewPager);
+        mViewPager.setPageTransformer(false,new PageSwitchTransformer());
 
     }
 
