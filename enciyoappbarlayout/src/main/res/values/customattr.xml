@@ -10,6 +10,7 @@
          <attr name="appbarSubTitleColor" format="color" />
          <attr name="imageTitleColor" format="color" />
          <attr name="imageSubTitleColor" format="color" />
+         <attr name="imageBackgroundColor" format="color" />
 
 
 
