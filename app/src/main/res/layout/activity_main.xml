@@ -9,8 +9,9 @@
     <com.enciyo.enciyoappbarlayout.CustomView
         android:layout_width="match_parent"
         app:title="Mustafa"
+        app:toolbar_color="@color/default_dot_color"
         app:appBarTitle="Mustafa"
-        app:appbarTitleColor="@color/default_dot_color"
+        app:appbarTitleColor="@android:color/black"
         app:imageSubtitle="SubTitle"
         app:imageTitle="Title"
         android:id="@+id/enciyo"

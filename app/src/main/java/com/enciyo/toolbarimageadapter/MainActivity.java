@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i =0;i<arrayList.size();i++){
             enciyo.setAdapter(arrayList.get(i));
         }
+        enciyo.setSubTitle("Array");
 
     }
 }

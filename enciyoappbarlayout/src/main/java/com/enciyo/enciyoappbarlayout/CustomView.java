@@ -55,19 +55,6 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     private Paint mPaint;
     private Rect mRect;
 
-    //Attr
-    String mTitle = " ";
-    String mSubTitle = " ";
-    String mImageTitle = " ";
-    String mImageSubtitle = " ";
-    int mToolbarColor = Color.TRANSPARENT;
-    int mAppBarTitleColor = Color.BLACK;
-    int mAppBarSubTitleColor = Color.BLACK;
-    int mImageTitleColor = Color.WHITE;
-    int mImageSubTitleColor = Color.WHITE;
-
-
-
 
     public void setImageTitle(String imageTitle) {
         mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
@@ -117,7 +104,10 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
             }
 
                 this.title.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarTitleColor,Color.WHITE));
+                this.subtitle.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarSubTitleColor,Color.WHITE));
                 this.toolbar.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_toolbar_color,Color.TRANSPARENT));
+                this.imageTitle.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_imageTitleColor,Color.TRANSPARENT));
+                this.imageSubTitle.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_imageSubTitleColor,Color.TRANSPARENT));
 
             typedArray.recycle();
 
@@ -145,11 +135,14 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         int toltalRange = getTotalScrollRange();
         if (toltalRange + verticalOffset <= toltalRange / 2) {
-            mFrameLayout.setAlpha(((float) (toltalRange + verticalOffset) / (toltalRange / 2)));
-            mLinearLayout.setAlpha(1 - ((float) (toltalRange + verticalOffset) / (toltalRange / 2)));
+            Float progress = ((float) (toltalRange + verticalOffset) / (toltalRange / 2));
+            mFrameLayout.setAlpha(progress);
+            mLinearLayout.setAlpha(1-progress);
+            toolbar.setAlpha(1-progress);
         } else {
             mFrameLayout.setAlpha(1);
             mLinearLayout.setAlpha(0);
+            toolbar.setAlpha(0);
         }
 
 
