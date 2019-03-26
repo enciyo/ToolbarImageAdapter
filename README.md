@@ -46,7 +46,19 @@ Xml
    <com.enciyo.enciyoappbarlayout.CustomView
        android:layout_width="match_parent"
        android:id="@+id/toolbarImageAdapter"
-       android:layout_height="300dp">
+       android:layout_height="300dp"
+       app:appBarTitle="Title"
+       app:appBarSubtitle="Subtitle"
+       app:imageTitle="ImageTitle"
+       app:imageSubtitle="ImageSubtitle"
+       app:toolbar_color="@color/toolbar_color"
+       app:appbarTitleColor="@color/title_color"
+       app:appbarSubTitleColor="@color/subtitle_color"
+       app:imageSubTitleColor="@color/image_subtitle_color"
+       app:imageTitleColor="@color/image_title_color"
+       
+       
+       >
    </com.enciyo.enciyoappbarlayout.CustomView>
    
    <android.support.v4.widget.NestedScrollView  
