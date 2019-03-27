@@ -55,11 +55,7 @@ Xml
        app:appbarTitleColor="@color/title_color"
        app:appbarSubTitleColor="@color/subtitle_color"
        app:imageSubTitleColor="@color/image_subtitle_color"
-       app:imageTitleColor="@color/image_title_color"
-       
-       
-       >
-   </com.enciyo.enciyoappbarlayout.CustomView>
+       app:imageTitleColor="@color/image_title_color"/>
    
    <android.support.v4.widget.NestedScrollView  
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
