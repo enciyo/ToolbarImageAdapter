@@ -1,5 +1,6 @@
 package com.enciyo.enciyoappbarlayout;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -22,7 +23,6 @@ public class PageViewHolder extends RecyclerView.ViewHolder {
     public void initView(String url,String title){
         ImageView imageView = itemView.findViewById(R.id.pager_imageView);
         TextView textTitle = itemView.findViewById(R.id.imageTitle);
-
         Glide.with(itemView).load(url).into(imageView);
         textTitle.setText(title);
 
@@ -32,6 +32,10 @@ public class PageViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView = itemView.findViewById(R.id.pager_imageView);
         TextView textTitle = itemView.findViewById(R.id.imageTitle);
         TextView textSubtitle = itemView.findViewById(R.id.imageSubtitle);
+        textTitle.setBackgroundColor(Color.TRANSPARENT);
+        textSubtitle.setBackgroundColor(Color.TRANSPARENT);
+
+
 
         textTitle.setText(title);
         textSubtitle.setText(subtitle);

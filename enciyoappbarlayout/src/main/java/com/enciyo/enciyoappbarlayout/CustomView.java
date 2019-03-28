@@ -104,9 +104,6 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
                 this.title.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarTitleColor,Color.WHITE));
                 this.subtitle.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarSubTitleColor,Color.WHITE));
                 this.toolbar.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_toolbar_color,Color.TRANSPARENT));
-                this.imageTitle.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_imageTitleColor,Color.TRANSPARENT));
-                this.imageSubTitle.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_imageSubTitleColor,Color.TRANSPARENT));
-
 
                 if(imageSubTitle.getText().length()==0 || imageTitle.getText().length()==0){
                     this.mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
