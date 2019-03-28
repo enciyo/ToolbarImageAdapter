@@ -11,9 +11,16 @@ import java.util.ArrayList;
 class PagerAdapter  extends android.support.v4.view.PagerAdapter {
 
     private ArrayList<String> arrayList;
+    private ArrayList<String> title;
+    private ArrayList<String> subtitle;
 
     PagerAdapter(ArrayList<String> arrayList){
         this.arrayList=arrayList;
+    }
+    PagerAdapter(ArrayList<String> arrayList,ArrayList<String> title,ArrayList<String> subtitle){
+        this.arrayList=arrayList;
+        this.title = title;
+        this.subtitle=subtitle;
     }
 
     @Override
@@ -36,7 +43,14 @@ class PagerAdapter  extends android.support.v4.view.PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View mView = LayoutInflater.from(container.getContext()).inflate(R.layout.item_adapter,container,false);
         PageViewHolder holder = new PageViewHolder(mView);
-        holder.initView(arrayList.get(position));
+
+        if(title!=null && subtitle !=null){
+            holder.initView(arrayList.get(position),title.get(position),subtitle.get(position));
+        }else
+        {
+            holder.initView(arrayList.get(position));
+
+        }
         container.addView(mView,0);
         return mView;
     }

@@ -79,8 +79,6 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
         mFrameLayout = mView.findViewById(R.id.frameLayout);
         toolbar = mView.findViewById(R.id.myCustomToolbar);
         mImageButton = mView.findViewById(R.id.imageButton);
-        imageTitle = mView.findViewById(R.id.imageTitle);
-        imageSubTitle = mView.findViewById(R.id.imageSubtitle);
         mImageLinear = mView.findViewById(R.id.imageLinear);
 
         this.setBackgroundColor(Color.parseColor("#000000"));
@@ -156,6 +154,24 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
 
     }
 
+    public void setAdapter(final ArrayList<String> arrayList,final ArrayList<String> title, final ArrayList<String> subtitle) {
+        Observable.fromCallable(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                mPagerAdapter = new PagerAdapter(arrayList,title,subtitle);
+                mViewPager.setAdapter(mPagerAdapter);
+                mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
+                mIndicator.attachToViewPager(mViewPager);
+                mViewPager.setPageTransformer(false, new PageSwitchTransformer());
+                return mViewPager;
+            }
+        })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
+    }
+
     public void setAdapter(final ArrayList<String> arrayList) {
         Observable.fromCallable(new Callable() {
             @Override
@@ -174,12 +190,23 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
 
     }
 
-    public void setAdapter(String url) {
-        mArrayList.add(url);
-        mViewPager.setAdapter(new PagerAdapter(mArrayList));
-        mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
-        mIndicator.attachToViewPager(mViewPager);
-        mViewPager.setPageTransformer(false, new PageSwitchTransformer());
+
+
+    public void addImage(final String url) {
+        Observable.fromCallable(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                mArrayList.add(url);
+                mViewPager.setAdapter(new PagerAdapter(mArrayList));
+                mIndicator = mView.findViewById(R.id.viewpager_pager_indicator);
+                mIndicator.attachToViewPager(mViewPager);
+                mViewPager.setPageTransformer(false, new PageSwitchTransformer());
+                return mViewPager;
+            }
+        })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
 
     }
 
