@@ -48,24 +48,13 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
     private TextView subtitle;
     private android.support.v7.widget.Toolbar toolbar;
     private ImageButton mImageButton;
-    private TextView imageTitle;
-    private TextView imageSubTitle;
+
     private ArrayList<String> mArrayList = new ArrayList<>();
     private LinearLayout mImageLinear;
     private Paint mPaint;
     private Rect mRect;
 
 
-    public void setImageTitle(String imageTitle) {
-        mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
-        this.imageTitle.setText(imageTitle);
-    }
-
-    public void setImageSubTitle(String imageSubTitle) {
-        mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
-
-        this.imageSubTitle.setText(imageSubTitle);
-    }
 
     private void init(AttributeSet attrs) {
 
@@ -94,24 +83,11 @@ public class CustomView extends AppBarLayout implements AppBarLayout.OnOffsetCha
             if(typedArray.getString(R.styleable.CustomView_appBarSubtitle)!= null ){
                 this.subtitle.setText(typedArray.getString(R.styleable.CustomView_appBarSubtitle));
             }
-            if (typedArray.getString(R.styleable.CustomView_imageTitle)!=null){
-                this.imageTitle.setText(typedArray.getString(R.styleable.CustomView_imageTitle));
-            }
-            if (typedArray.getString(R.styleable.CustomView_imageSubtitle)!=null){
-                this.imageSubTitle.setText(typedArray.getString(R.styleable.CustomView_imageSubtitle));
-            }
 
                 this.title.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarTitleColor,Color.WHITE));
                 this.subtitle.setTextColor(typedArray.getColor(R.styleable.CustomView_appbarSubTitleColor,Color.WHITE));
                 this.toolbar.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_toolbar_color,Color.TRANSPARENT));
 
-                if(imageSubTitle.getText().length()==0 || imageTitle.getText().length()==0){
-                    this.mImageLinear.setBackgroundColor(Color.parseColor("#95000000"));
-                }
-                else{
-                    this.mImageLinear.setBackgroundColor(typedArray.getColor(R.styleable.CustomView_imageBackgroundColor,Color.TRANSPARENT));
-
-                }
             typedArray.recycle();
 
 
