@@ -27,6 +27,7 @@ allprojects {
 // mArrayList consists of url values of image.
 toolbarImageAdapter = (CustomView) findViewById(R.id.container);
 toolbarImageAdapter.setAdapter(mArrayList);
+toolbarImageAdapter.addImage(mImageUrl);
 toolbarImageAdapter.setTitle("Title")
 toolbarImageAdapter.setSubTitle("SubTitle")
 toolbarImageAdapter.setmImageButton(mImageButton);
